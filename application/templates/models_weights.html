@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Models weights</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/page.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/table.css') }}">
+</head>
+<body>
+<div class="menu-container">
+    <div class="menu">
+        <h1>Models weights</h1>
+        <div class="table-container">
+            <table class="entityTable">
+                <thead>
+                <tr>
+                    <th>Fields</th>
+                    {% for model_name in weights.keys() %}
+                    <th>{{ model_name }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for field_name in weights[weights.keys()|first] %}
+                <tr>
+                    <td>{{ field_name }}</td>
+                    {% for model_data in weights.values() %}
+                    <td>{{ model_data[field_name] }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a class="button-container" href="/"><input type="button" value="Back"></a>
+    </div>
+</div>
+</body>
+</html>
